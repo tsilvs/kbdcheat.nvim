@@ -1,8 +1,17 @@
+# Keyboard Cheat Sheet
 
+For those who don't know nor remember the shortcuts (like me)
+
+## Installation
+
+For now, only `git clone`
+
+<details>
+<summary>Planned methods</summary>
++ `Lazy.nvim`:
 
 ```lua
 {
-	dir = "/var/mnt/data/myrepo/tsilvs/neovim-keyboard-cheatsheet",
 	name = "Keyboard Cheatsheet",
 	dev = true,
 	lazy = true,
@@ -11,3 +20,4 @@
 	opts = {}
 }
 ```
+</details>
