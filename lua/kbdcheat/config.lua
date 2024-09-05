@@ -1,7 +1,7 @@
 local M = {}
 
 M.options = {
-	height = 4,
+	height = 5,
 	content = {
 		"Normal mode  <- Esc | ^C",
 		"Insert mode  <- i | a | I | A | o | O",
