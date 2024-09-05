@@ -39,9 +39,11 @@ local widget_write = function( w_buf )
 	end
 end
 
-local win_redraw = function( w_win, win_conf )
-	if w_win and vim.api.nvim_win_is_valid(w_win) then
-		vim.api.nvim_win_set_config(w_win, win_conf)
+local win_redraw = function( w_win )
+	return function( win_conf )
+		if w_win and vim.api.nvim_win_is_valid(w_win) then
+			vim.api.nvim_win_set_config(w_win, win_conf)
+		end
 	end
 end
 
@@ -64,7 +66,7 @@ M.setup = function(opts)
 		group = vim.api.nvim_create_augroup("PlugWidgetResize", { clear = true }),
 		callback = function(ev)
 			local	win_conf = win_conf_get( vim.api.nvim_get_option("columns") )( vim.api.nvim_get_option("lines") )( config.options.height )
-			win_redraw( widget_win, win_conf )
+			win_redraw( widget_win )( win_conf )
 		end
 	})
 end
