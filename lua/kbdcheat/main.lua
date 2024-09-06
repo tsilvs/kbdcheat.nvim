@@ -33,11 +33,13 @@ local win_setup = function( w_win )
 end
 
 local widget_write = function( w_buf )
-	vim.api.nvim_buf_set_config(w_buf, { readonly = false, modifiable = true })
+	vim.api.nvim_buf_set_option(w_buf, 'readonly', false)
+	vim.api.nvim_buf_set_option(w_buf , 'modifiable', true)
 	return function( w_win )
 		return function( content )
 			vim.api.nvim_buf_set_lines(w_buf, 0, -1, false, content)
-			vim.api.nvim_buf_set_option( w_buf, { readonly = true, modifiable = false })
+			vim.api.nvim_buf_set_option(w_buf, 'readonly', true)
+			vim.api.nvim_buf_set_option(w_buf, 'modifiable', false)
 		end
 	end
 end
