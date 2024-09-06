@@ -26,12 +26,10 @@ local win_conf_make = function( win_height )
 end
 
 local win_setup = function( w_win )
-	vim.api.nvim_win_set_config( w_win, {
-		number = false,
-		relativenumber = false,
-		cursorline = false,
-		winfixheight = true
-	} )
+	vim.api.nvim_win_set_option(w_win, 'number', false)
+	vim.api.nvim_win_set_option(w_win, 'relativenumber', false)
+	vim.api.nvim_win_set_option(w_win, 'cursorline', false)
+	vim.api.nvim_win_set_option(w_win, 'winfixheight', true)
 end
 
 local widget_write = function( w_buf )
