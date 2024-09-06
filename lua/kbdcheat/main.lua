@@ -55,8 +55,8 @@ M.setup = function(opts)
 	config.options = vim.tbl_deep_extend('force', config.options, opts or {})
 
 	widget_buf = vim.api.nvim_create_buf(false, true)
-	widget_win = vim.api.nvim_open_win(widget_buf, false, win_conf)
 	local	win_conf = win_conf_get( vim.api.nvim_get_option("columns") )( vim.api.nvim_get_option("lines") )( config.options.height )
+	widget_win = vim.api.nvim_open_win(widget_buf, false, win_conf)
 
 	win_setup(widget_win)
 	
