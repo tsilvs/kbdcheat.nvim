@@ -5,9 +5,9 @@ local widget_buf = nil
 local widget_win = nil
 
 local win_conf_get = function( width )
-	local row = win_height - height - 1
 	return function( height )
 		return function( win_height )
+			local row = win_height - height - 1
 			return {
 				style = "minimal",
 				relative = "editor",
