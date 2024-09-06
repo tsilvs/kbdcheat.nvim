@@ -4,9 +4,11 @@ local config = require('kbdcheat.config')
 local widget_buf = nil
 local widget_win = nil
 
-local win_conf_get = function( width )
-	return function( height )
-		return function( win_height )
+local main_window = vim.api.nvim_get_current_win()
+
+local win_conf_get = function( win_height )
+	return function( width )
+		return function( height )
 			local row = win_height - height - 1
 			return {
 				style = "minimal",
@@ -55,7 +57,7 @@ M.setup = function(opts)
 	config.options = vim.tbl_deep_extend('force', config.options, opts or {})
 
 	widget_buf = vim.api.nvim_create_buf(false, true)
-	local win_conf = win_conf_get( vim.api.nvim_get_option("columns") )( vim.api.nvim_get_option("lines") )( config.options.height )
+	local win_conf = win_conf_get( vim.api.nvim_get_option("lines")( vim.api.nvim_get_option("columns")( config.options.height )
 	widget_win = vim.api.nvim_open_win(widget_buf, false, win_conf)
 
 	win_setup(widget_win)
@@ -65,7 +67,7 @@ M.setup = function(opts)
 	vim.api.nvim_create_autocmd("VimResized", {
 		group = vim.api.nvim_create_augroup("PlugWidgetResize", { clear = true }),
 		callback = function(ev)
-			local	win_conf = win_conf_get( vim.api.nvim_get_option("columns") )( vim.api.nvim_get_option("lines") )( config.options.height )
+			local	win_conf = win_conf_get( vim.api.nvim_get_option("lines") )( vim.api.nvim_get_option("columns") )( config.options.height )
 			win_redraw( widget_win )( win_conf )
 		end
 	})
