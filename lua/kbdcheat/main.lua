@@ -6,14 +6,14 @@ local widget_win = nil
 
 local main_window = vim.api.nvim_get_current_win()
 
-local win_conf_get = function( win_height )
-	return function( width )
-		return function( height )
-			local row = win_height - height - 1
+local win_conf_get = function( root_height )
+	return function( win_width )
+		return function( win_height )
+			local row = root_height - win_height - 1
 			return {
 				style = "minimal",
 				relative = "editor",
-				width = width,
+				width = win_width,
 				height = win_height,
 				row = row,
 				col = 0
@@ -73,7 +73,6 @@ M.setup = function(opts)
 	})
 end
 
--- Expose other functions if needed
 M.win_redraw = win_redraw
 M.widget_write = widget_creat
 
