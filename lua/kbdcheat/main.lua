@@ -15,11 +15,11 @@ local win_conf_make = function( win_height )
 			local row = root_height - win_height - 1
 			return {
 				style = "minimal",
-				relative = "editor",
-				width = win_width,
+				--relative = "editor",
+				--width = win_width,
 				height = win_height,
-				row = row,
-				col = 0
+				--row = row,
+				--col = 0
 			}
 		end
 	end
@@ -71,7 +71,7 @@ M.setup = function(opts)
 
 	widget_write( widget_buf )( widget_win )( config.options.content )
 
-	vim.api.nvim_win_set_config(main_win, { height = win_conf_get(main_win).height - config.options.height })
+	--vim.api.nvim_win_set_config(main_win, { height = win_conf_get(main_win).height - config.options.height })
 
 	vim.api.nvim_create_autocmd("VimResized", {
 		group = vim.api.nvim_create_augroup("PlugWidgetResize", { clear = true }),
