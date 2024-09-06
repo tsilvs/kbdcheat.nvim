@@ -61,10 +61,7 @@ M.setup = function(opts)
 
 	config.options = vim.tbl_deep_extend('force', config.options, opts or {})
 
-	vim.api.nvim_win_set_config(main_win, { height = win_conf_get(main_win).height - config.options.height })
-
 	local win_conf_f = win_conf_make( config.options.height )
-
 	local win_conf = win_conf_f( vim.api.nvim_get_option("lines") )( vim.api.nvim_get_option("columns") )
 
 	widget_buf = vim.api.nvim_create_buf(false, true)
@@ -73,6 +70,8 @@ M.setup = function(opts)
 	win_setup(widget_win)
 
 	widget_write( widget_buf )( widget_win )( config.options.content )
+
+	vim.api.nvim_win_set_config(main_win, { height = win_conf_get(main_win).height - config.options.height })
 
 	vim.api.nvim_create_autocmd("VimResized", {
 		group = vim.api.nvim_create_augroup("PlugWidgetResize", { clear = true }),
